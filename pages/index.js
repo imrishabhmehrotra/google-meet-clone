@@ -1,9 +1,13 @@
-
-const inter = Inter({ subsets: ['latin'] })
+import { useSocket } from "@/context/socket";
+import { useEffect } from "react";
 
 export default function Home() {
-  return (
+  const socket = useSocket();
 
-    <h1>Welcome</h1>
-  )
+  useEffect(() => {
+    socket.on("connect", () => {
+      console.log(socket.id);
+    });
+  }, []);
+  return <h1>Welcome</h1>;
 }
